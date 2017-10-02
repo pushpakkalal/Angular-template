@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <link rel="stylesheet" href="../assets/styles/main.css">
+</head>
+
+<body ng-app="mainApp" ng-controller="MainCtrl">
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- <div class="MainMiddleCont" ng-view> </div> -->
+    <header class="header" ng-include="'includes/header.html'"></header>
+    <div class="MainMiddleCont" ui-view></div>
+    <footer class="footer" ng-include="'includes/footer.html'"></footer>
+
+    <script src="../assets/scripts/jquery-1.12.4.min.js"></script>
+    <script src="../AngularCore/angular.min.js"></script>
+    <!-- <script src="../AngularCore/angular-route.js"></script> -->
+    <script src="../AngularCore/angular-ui-router.js"></script>
+    <script src="../SPA/App.js"></script>
+    <script src="../SPA/Common/Controllers/mainCtrl.js"></script>
+    <script src="../SPA/Common/Directives/mainDirective.js"></script>
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    <script>
+        window.ga = function() {
+            ga.q.push(arguments)
+        };
+        ga.q = [];
+        ga.l = +new Date;
+        ga('create', 'UA-XXXXX-Y', 'auto');
+        ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+
+</html>

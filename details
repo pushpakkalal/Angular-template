@@ -1,0 +1,157 @@
+1]. syntax for create module
+--------------------------------------------------------------
+var app = angular.module("myApp", []);
+
+2]. syntax for create controller
+--------------------------------------------------------------
+app.controller("myCtrl", function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+});
+
+3]. syntax for create custome directive
+--------------------------------------------------------------
+app.directive("w3TestDirective", function() {
+    return {
+        restrict : "A", // "E","C", "M", "EA"
+        template : "<h1>Made by a directive!</h1>"
+        replace: true,
+      	link: function($scope, $element, attrs) { //once we add the attributes to the directive, we can just refer to them as normal DOM attributes through the attrs object.
+      		console.log(attrs); //you can also log the attributes to see what's in them
+      		$element.find('article').hide();
+      		$element.find('h2', click(function() {
+      			$element.find('article').toggle();
+      	  });
+      	 }
+    };
+});
+
+<w3-test-directive></w3-test-directive>
+<div w3-test-directive></div>
+<div class="w3-test-directive"></div>
+<!-- directive: w3-test-directive -->
+
+Angular js Basic service:
+--------------------------------------------------------------
+In AngularJS, a service is a function, or object
+
+1]. $location service. =>
+--------------------------------------------------------------
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $location) {
+    $scope.myUrl = $location.absUrl();
+});
+
+2]. $http Service =>
+--------------------------------------------------------------
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $http.get("welcome.htm").then(function (response) {
+        $scope.myWelcome = response.data;
+    });
+});
+
+3]. $timeout Service =>
+--------------------------------------------------------------
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $timeout) {
+    $scope.myHeader = "Hello World!";
+    $timeout(function () {
+        $scope.myHeader = "How are you today?";
+    }, 2000);
+});
+
+4]. $interval Service =>
+---------------------------------------------------------------
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $interval) {
+    $scope.theTime = new Date().toLocaleTimeString();
+    $interval(function () {
+        $scope.theTime = new Date().toLocaleTimeString();
+    }, 1000);
+});
+
+5]. Create Your Own Service
+---------------------------------------------------------------
+app.service('hexafy', function() {
+    this.myFunc = function (x) {
+        return x.toString(16);
+    }
+});
+
+6]. Use the custom made service named hexafy to convert a number into a hexadecimal number:
+---------------------------------------------------------------------------------------------
+app.controller('myCtrl', function($scope, hexafy) {
+    $scope.hex = hexafy.myFunc(255);
+});
+
+7]. Use a Custom Service Inside a Filter
+---------------------------------------------------------------------------------------------
+app.filter('myFormat',['hexafy', function(hexafy) {
+    return function(x) {
+        return hexafy.myFunc(x);
+    };
+}]);
+
+8]. events calling
+---------------------------------------------------------------------------------------------
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+  $scope.myFunction = function() {
+    // do stuff
+  }
+});
+
+9]. Angular validation
+---------------------------------------------------------------------------------------------
+Input fields have the following states:
+    $untouched: The field has not been touched yet
+    $touched: The field has been touched
+    $pristine: The field has not been modified yet
+    $dirty: The field has been modified
+    $invalid: The field content is not valid
+    $valid: The field content is valid
+
+Forms have the following states:
+    $pristine: No fields have been modified yet
+    $dirty: One or more have been modified
+    $invalid: The form content is not valid
+    $valid: The form content is valid
+    $submitted: The form is submitted
+
+Ex:1
+<input name="myName" ng-model="myName" required>
+<span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
+
+Ex:2
+<p>Email:<br>
+<input type="email" name="email" ng-model="email" required>
+<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+<span ng-show="myForm.email.$error.required">Email is required.</span>
+<span ng-show="myForm.email.$error.email">Invalid email address.</span>
+</span>
+</p>
+
+Ex:3
+<p>
+<input type="submit"
+ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||
+myForm.email.$dirty && myForm.email.$invalid">
+</p>
+
+
+Task need to complete.
+-----------------------------------
+1]. toggle class element
+2]. showe hide element
+3]. test all event specialy
+      a. window resize
+      b. on click
+      c. window load
+      d. window scroll
+      e. on hover and hover out
+      f. eventPreventdefault methode
+      g. eventStoppropogation
+      h. settimeoutmethode
+      i. getwindow height
+4]. call slider
